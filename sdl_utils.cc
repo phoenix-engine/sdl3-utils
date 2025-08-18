@@ -31,8 +31,8 @@ WindowHandles::get_handles(SDL_Window* window) {
 		auto dhandle = get_ptr(props, SDL_PROP_WINDOW_X11_DISPLAY_POINTER);
 
 		if (wid.has_value() && dhandle.has_value()) {
-			return Handles{ .window_id      = wid.value(),
-				            .display_handle = dhandle.value() };
+			return XHandles{ .window_id      = wid.value(),
+				             .display_handle = dhandle.value() };
 		} else {
 			return std::unexpected(std::runtime_error(
 			  "Unable to get X window ID or display handle"));
@@ -42,8 +42,8 @@ WindowHandles::get_handles(SDL_Window* window) {
 		auto dhandle = get_ptr(props, SDL_PROP_WINDOW_WAYLAND_DISPLAY_POINTER);
 
 		if (wid.has_value() && dhandle.has_value()) {
-			return Handles{ .window_id      = wid.value(),
-				            .display_handle = dhandle.value() };
+			return WaylandHandles{ .window_id      = wid.value(),
+				                   .display_handle = dhandle.value() };
 		} else {
 			return std::unexpected(std::runtime_error(
 			  "Unable to get wayland window ID or display handle"));

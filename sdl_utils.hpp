@@ -3,6 +3,7 @@
 #include <expected>
 #include <optional>
 #include <stdexcept>
+#include <variant>
 
 #include <SDL3/SDL.h>
 
@@ -10,10 +11,17 @@ namespace sdl_utils {
 
 class WindowHandles {
   public:
-	struct Handles {
+	struct WaylandHandles {
 		Sint64 window_id;
 		void*  display_handle;
 	};
+
+	struct XHandles {
+		Sint64 window_id;
+		void*  display_handle;
+	};
+
+	using Handles = std::variant<XHandles, WaylandHandles>;
 
   protected:
 	static std::optional<Sint64> get_num(SDL_PropertiesID props,
