@@ -1,8 +1,6 @@
 #pragma once
 
-#include <expected>
 #include <optional>
-#include <stdexcept>
 #include <variant>
 
 #include <SDL3/SDL.h>
@@ -36,8 +34,7 @@ class WindowHandles {
                                         const char* key);
 
   public:
-    static std::expected<Handles, std::runtime_error> get_handles(
-        SDL_Window* window);
+    static Handles get_handles(SDL_Window* window) noexcept(false);
 };
 
 }  // namespace sdl_utils
