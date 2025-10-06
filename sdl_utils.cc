@@ -40,11 +40,11 @@ Handles WindowHandles::get_handles(SDL_Window* window) noexcept(false) {
         }
 
     } else if (driver == "wayland") {
-        auto wid = get_num(props, SDL_PROP_WINDOW_WAYLAND_SURFACE_POINTER);
+        auto shandle = get_ptr(props, SDL_PROP_WINDOW_WAYLAND_SURFACE_POINTER);
         auto dhandle = get_ptr(props, SDL_PROP_WINDOW_WAYLAND_DISPLAY_POINTER);
 
-        if (wid.has_value() && dhandle.has_value()) {
-            return WaylandHandles{.window_id = wid.value(),
+        if (dhandle.has_value()) {
+            return WaylandHandles{.surface_handle = shandle,
                                   .display_handle = dhandle.value()};
         } else {
             throw std::runtime_error(

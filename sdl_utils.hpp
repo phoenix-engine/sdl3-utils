@@ -10,7 +10,7 @@ namespace sdl_utils {
 class WindowHandles {
   public:
     struct WaylandHandles {
-        Sint64 window_id;
+        std::optional<void*> surface_handle;
         void* display_handle;
     };
 
